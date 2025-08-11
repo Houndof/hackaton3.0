@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find My Pet - Encuentra tu Mascota Perdida</title>
+    <meta name="description" content="Plataforma para publicar y buscar mascotas perdidas y encontradas">
+
+    <!-- CDN de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Configuración personalizada de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        accent: '#F59E0B'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+    <!-- Encabezado/Navegación -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logotipo -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                        <i class="fas fa-file-alt text-white text-sm"></i>
+                    </div>
+                    <span class="text-xl font-bold text-gray-800">Find My Pet</span>
+                </div>
+
+                <!-- Navegación de Escritorio -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="text-gray-700 hover:text-primary transition-colors duration-300">Inicio</a>
+                    <a href="#crear-formulario" class="text-gray-700 hover:text-primary transition-colors duration-300">Reportar Mascota</a>
+                    <a href="#sobre-nosotros" class="text-gray-700 hover:text-primary transition-colors duration-300">Sobre Nosotros</a>
+                    <a href="#formularios-publicados" class="text-gray-700 hover:text-primary transition-colors duration-300">Mascotas Reportadas</a>
+                </div>
+
+                <!-- Menú Móvil -->
+                <div class="md:hidden">
+                    <details class="relative">
+                        <summary class="text-gray-700 hover:text-primary cursor-pointer">
+                            <i class="fas fa-bars text-xl"></i>
+                        </summary>
+                        <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-50">
+                            <a href="#inicio" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
+                            <a href="#crear-formulario" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Reportar Mascota</a>
+                            <a href="#formularios-publicados" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mascotas Reportadas</a>
+                            <a href="#sobre-nosotros" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Sobre Nosotros</a>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sección Principal -->
+    <section id="inicio" class="bg-gradient-to-br from-primary to-blue-600 text-white py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                <i class="fas fa-paw mr-4"></i>Find My Pet
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90 max-w-3xl mx-auto">
+Plataforma dedicada para reportar mascotas perdidas y encontrar a tu compañero perdido
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#crear-formulario" class="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300">
+                    Crear Anuncio
+                </a>
+                <a href="#sobre-nosotros" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition-colors duration-300">
+                    Buscar Mascotas
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Crear Formulario -->
+    <section id="crear-formulario" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Reportar Mascota Perdida/Encontrada</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Proporciona la mayor cantidad de detalles posible para ayudar a reunir mascotas con sus familias
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <form class="bg-gray-50 p-8 rounded-xl shadow-lg" method="post" action="#" enctype="multipart/form-data">
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <!-- Título del Formulario -->
+                        <div class="md:col-span-2">
+                            <label for="form-title" class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-paw mr-2"></i>Nombre de la Mascota
+                            </label>
+                            <input type="text" id="form-title" name="form-title"
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                                   placeholder="Ej: Max, Luna, Firulais" required>
+                        </div>
+
+                        <!-- Descripción del Formulario -->
+                        <div class="md:col-span-2">
+                            <label for="form-description" class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-info-circle mr-2"></i>Descripción de la Mascota
+                            </label>
+                            <textarea id="form-description" name="form-description" rows="3"
+                                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                                      placeholder="Describe características físicas, comportamiento, lugar donde se perdió/encontró, fecha, etc."></textarea>
+                        </div>
+
+                        <!-- Categoría -->
+                        <div>
+                            <label for="category" class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-tags mr-2"></i>Tipo de Mascota
+                            </label>
+                            <select id="category" name="category"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="">Selecciona el tipo de mascota</option>
+                                <optgroup label="Mascotas Usuales">
+                                    <option value="perro">Perro</option>
+                                    <option value="gato">Gato</option>
+                                    <option value="pajaro">Pájaro</option>
+                                    <option value="pez">Pez</option>
+                                    <option value="hamster">Hámster</option>
+                                    <option value="conejo">Conejo</option>
+                                </optgroup>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+
+                        <!-- Nivel de Privacidad -->
+                        <div>
+                            <label for="privacy" class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-search mr-2"></i>Estado del Reporte
+                            </label>
+                            <select id="privacy" name="privacy"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="perdida">Mascota Perdida</option>
+                                <option value="encontrada">Mascota Encontrada</option>
+                                <option value="adoptacion">En Adopción</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Área de Subida de Archivos -->
+                    <div class="mb-8">
+                        <label for="form-file" class="block text-sm font-medium text-gray-700 mb-4">
+                            <i class="fas fa-camera mr-2"></i>Foto de la Mascota (Requerida)
+                        </label>
+                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-primary transition-colors">
+                            <div class="mb-4">
+                                <i class="fas fa-camera text-4xl text-gray-400 mb-4"></i>
+                                <p class="text-lg font-medium text-gray-600 mb-2">Sube una foto clara de tu mascota</p>
+                                <p class="text-sm text-gray-500">Arrastra la imagen aquí o haz clic para seleccionar</p>
+                            </div>
+                            <input type="file" id="form-file" name="form-file"
+                                   accept=".jpg,.jpeg,.png,.gif,.webp"
+                                   class="w-full opacity-0 absolute inset-0 cursor-pointer" required>
+                        </div>
+                    </div>
+
+                    <!-- Información de Contacto -->
+                    <div class="bg-white p-6 rounded-lg border border-gray-200 mb-8">
+                        <h4 class="font-semibold text-gray-800 mb-4">Información de Contacto</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Nombre completo</label>
+                                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Tu nombre completo" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="tu@email.com" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
+                                <input type="tel" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="+56 9 1234 5678" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
+                            <i class="fas fa-paw mr-2"></i>Publicar Reporte de Mascota
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Formularios Publicados -->
+    <section id="formularios-publicados" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Mascotas Reportadas</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Explora los reportes de mascotas perdidas y encontradas en tu área
+                </p>
+            </div>
+
+            <!-- Barra de Filtros -->
+            <div class="max-w-4xl mx-auto mb-12">
+                <form class="bg-gray-50 p-6 rounded-lg" method="get" action="#">
+                    <div class="grid md:grid-cols-4 gap-4">
+                        <div>
+                            <label for="filter-category" class="block text-sm font-medium text-gray-700 mb-2">Tipo de Mascota</label>
+                            <select id="filter-category" name="filter-category"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="">Todas las mascotas</option>
+                                <option value="perro">Perros</option>
+                                <option value="gato">Gatos</option>
+                                <option value="pajaro">Pájaros</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="filter-date" class="block text-sm font-medium text-gray-700 mb-2">Estado</label>
+                            <select id="filter-date" name="filter-date"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="">Todos los reportes</option>
+                                <option value="perdida">Mascotas Perdidas</option>
+                                <option value="encontrada">Mascotas Encontradas</option>
+                                <option value="adoptacion">En Adopción</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="search-forms" class="block text-sm font-medium text-gray-700 mb-2">Buscar</label>
+                            <input type="text" id="search-forms" name="search-forms"
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+                                   placeholder="Buscar por nombre, raza, ubicación...">
+                        </div>
+                        <div class="flex items-end">
+                            <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
+                                <i class="fas fa-search mr-2"></i>Buscar Mascotas
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Cuadrícula de Formularios -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Ejemplo de mascota -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="h-48 bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center relative">
+                        <i class="fas fa-dog text-white text-4xl"></i>
+                        <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">
+                            PERDIDO
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded">Perro</span>
+                            <span class="text-gray-500 text-sm">Hace 2 horas</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">Max - Golden Retriever</h3>
+                        <p class="text-gray-600 text-sm mb-4">Perdido en Parque O'Higgins. Collar azul, muy amigable. Responde a su nombre.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-500 text-sm">📍 Santiago Centro</span>
+                            <a href="#" class="text-primary hover:text-blue-700 font-medium text-sm">
+                                Ver detalles →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ejemplo de mascota -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="h-48 bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center relative">
+                        <i class="fas fa-cat text-white text-4xl"></i>
+                        <div class="absolute top-2 left-2 bg-green-600 text-white px-2 py-1 rounded text-xs font-bold">
+                            ENCONTRADO
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">Gato</span>
+                            <span class="text-gray-500 text-sm">Hace 1 día</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">Luna - Gata Siamesa</h3>
+                        <p class="text-gray-600 text-sm mb-4">Encontrada en Las Condes. Gata siamesa, ojos azules, muy cariñosa.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-500 text-sm">📍 Las Condes</span>
+                            <a href="#" class="text-primary hover:text-blue-700 font-medium text-sm">
+                                Ver detalles →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ejemplo de mascota -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center relative">
+                        <i class="fas fa-heart text-white text-4xl"></i>
+                        <div class="absolute top-2 left-2 bg-blue-600 text-white px-2 py-1 rounded text-xs font-bold">
+                            ADOPCIÓN
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">Perro</span>
+                            <span class="text-gray-500 text-sm">Hace 3 días</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">Rocky - Mestizo</h3>
+                        <p class="text-gray-600 text-sm mb-4">Cachorro de 6 meses busca familia amorosa. Vacunado y desparasitado.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-500 text-sm">📍 Maipú</span>
+                            <a href="#" class="text-primary hover:text-blue-700 font-medium text-sm">
+                                Ver detalles →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón Cargar Más -->
+            <div class="text-center mt-12">
+                <button class="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 transition-colors duration-300">
+                    <i class="fas fa-paw mr-2"></i>Ver Más Mascotas
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Estadísticas -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Impacto de Nuestra Comunidad</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Ayudando a reunir mascotas con sus familias cada día
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Estadística 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-paw text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800 mb-2">1,247</h3>
+                    <p class="text-gray-600">Mascotas Reportadas</p>
+                </div>
+
+                <!-- Estadística 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-secondary rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-home text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800 mb-2">892</h3>
+                    <p class="text-gray-600">Mascotas Reunidas</p>
+                </div>
+
+                <!-- Estadística 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-accent rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heart text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800 mb-2">156</h3>
+                    <p class="text-gray-600">Adopciones Exitosas</p>
+                </div>
+
+                <!-- Estadística 4 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-purple-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800 mb-2">2,340</h3>
+                    <p class="text-gray-600">Familias Activas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de Página -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Información de la Empresa -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                            <i class="fas fa-paw text-white text-sm"></i>
+                        </div>
+                        <span class="text-xl font-bold">Find My Pet</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Reuniendo mascotas con sus familias desde 2024. Nuestra misión es ayudar a que ninguna mascota permanezca perdida.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Enlaces Rápidos -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Navegación</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#inicio" class="hover:text-white transition-colors">Inicio</a></li>
+                        <li><a href="#crear-formulario" class="hover:text-white transition-colors">Reportar Mascota</a></li>
+                        <li><a href="#formularios-publicados" class="hover:text-white transition-colors">Mascotas Reportadas</a></li>
+                        <li><a href="#sobre-nosotros" class="hover:text-white transition-colors">Sobre Nosotros</a></li>
+                        <li><a href="#como-funciona" class="hover:text-white transition-colors">Cómo Funciona</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Soporte -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Ayuda y Soporte</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#faq" class="hover:text-white transition-colors">Preguntas Frecuentes</a></li>
+                        <li><a href="mailto:ayuda@findmypet.cl" class="hover:text-white transition-colors">ayuda@findmypet.cl</a></li>
+                        <li><a href="tel:+56912345678" class="hover:text-white transition-colors">+56 9 1234 5678</a></li>
+                        <li><a href="#terminos" class="hover:text-white transition-colors">Términos de Uso</a></li>
+                        <li><a href="#privacidad" class="hover:text-white transition-colors">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Find My Pet. Todos los derechos reservados. Hecho con ❤️ para reunir mascotas con sus familias.</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- CSS Personalizado para animaciones -->
+    <style>
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 1s ease-out;
+        }
+
+        /* Transiciones suaves */
+        * {
+            scroll-behavior: smooth;
+        }
+
+        /* Barra de desplazamiento personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3B82F6;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563EB;
+        }
+    </style>
+</body>
+</html>
